@@ -27,17 +27,25 @@ func Process_fn(input_cmd string) (r_err error) {
 			slot_remaining[i] = i + 1
 		}
 		fmt.Println("Created a parking lot with", n, " slots")
-		fmt.Println(len(slot_remaining))
+	//	fmt.Println(len(slot_remaining))
 	case "park":
 
 		if len(slot_remaining) > 0 {
 			slot_no := slot_remaining[0]
-			slot_remaining = slot_remaining[:0+copy(slot_remaining[0:], slot_remaining[0+1:])]
-			temp := slot{vechicle_no: cmd_arr[1], color: cmd_arr[2]}
-			parking_slot_info[slot_no] = temp
+			pre_len := len(park_number_slot_info)
 			park_number_slot_info[cmd_arr[1]] = slot_no
-			fmt.Println("Allocated slot number: ", slot_no)
+			post_len := len(park_number_slot_info)
+			if pre_len == post_len {
+				fmt.Println("Vechile Number ", cmd_arr[1], " Already Present")
 
+			} else {
+				slot_remaining = slot_remaining[:0+copy(slot_remaining[0:], slot_remaining[0+1:])]
+				temp := slot{vechicle_no: cmd_arr[1], color: cmd_arr[2]}
+
+				parking_slot_info[slot_no] = temp
+
+				fmt.Println("Allocated slot number: ", slot_no)
+			}
 		} else {
 			fmt.Println("Sorry, parking lot is full")
 		}
