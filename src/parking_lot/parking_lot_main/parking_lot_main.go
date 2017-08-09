@@ -2,10 +2,10 @@ package main
 
 import (
 	"flag"
-	"parkinglot/parking_lot_pkg"
+	"parking_lot/parking_lot_pkg"
 )
 
-var file_name = flag.String("file_name", "", "file_name")
+var file_name = flag.String("input_file_name", "", "input_file_name")
 
 func main() {
 	flag.Parse()
